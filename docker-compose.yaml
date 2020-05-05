@@ -17,7 +17,7 @@ services:
     shm_size: '1gb'
     image: myoracle:11.2
     environment: 
-      - ORACLE_PWD=Blue1234
+      - ORACLE_PWD=password
     ports:
       #- "1521:1521"
       - "8080:8080"
