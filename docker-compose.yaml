@@ -6,7 +6,7 @@ services:
     environment:
       - OUT_DIR=/opt/out
     volumes:
-      - ${PWD}/vol/ping-out:/opt/out
+      - ping-out:/opt/pingfederate
     ports:
       - "9031:9031"
       - "9999:9999"
