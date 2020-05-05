@@ -2,7 +2,7 @@ version: "3.1"
 
 services:
   pingfederate:
-    image: myping:alpine
+    image: ajayadithan/pingfederate
     environment:
       - OUT_DIR=/opt/out
     volumes:
@@ -17,7 +17,7 @@ services:
     shm_size: '1gb'
     image: myoracle:11.2
     environment: 
-      #- ORACLE_PWD=*****
+      - ORACLE_PWD=Blue1234
     ports:
       #- "1521:1521"
       - "8080:8080"
