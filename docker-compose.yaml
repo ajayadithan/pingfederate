@@ -1,0 +1,38 @@
+version: "3.1"
+
+services:
+  pingfederate:
+    image: myping:alpine
+    environment:
+      - OUT_DIR=/opt/out
+    volumes:
+      - ${PWD}/vol/ping-out:/opt/out
+    ports:
+      - "9031:9031"
+      - "9999:9999"
+    networks:
+      - pingnet
+  
+  oracle:
+    shm_size: '1gb'
+    image: myoracle:11.2
+    environment: 
+      - ORACLE_PWD=Blue1234
+    ports:
+      #- "1521:1521"
+      - "8080:8080"
+    volumes:
+      -  ${PWD}/vol/oradata:/u01/app/oracle/oradata
+      -  ${PWD}/vol/setup:/u01/app/oracle/scripts/setup | /docker-entrypoint-initdb.d/setup
+      -  ${PWD}/vol/startup:/u01/app/oracle/scripts/startup | /docker-entrypoint-initdb.d/startup
+    networks:
+      - pingnet
+
+networks:
+  pingnet:
+
+volumes:
+  ping-out:
+  oracle-data:
+  oracle-setup:
+  oracle-startup:
