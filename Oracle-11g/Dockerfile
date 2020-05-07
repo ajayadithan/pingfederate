@@ -58,6 +58,8 @@ RUN yum -y install unzip libaio bc initscripts net-tools openssl compat-libstdc+
     rm -rf $INSTALL_DIR && \
     chmod ug+x $ORACLE_BASE/*.sh
 
+EXPOSE 8080 1521
+
 HEALTHCHECK --interval=1m --start-period=5m \
    CMD "$ORACLE_BASE/$CHECK_DB_FILE" >/dev/null || exit 1
 
